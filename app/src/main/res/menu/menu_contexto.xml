@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemRemover"
+        android:title="Remover Paciente">
+    </item>
+
+    <item
+        android:id="@+id/itemAlterar"
+        android:title="Alterar Paciente">
+    </item>
+
+    <item
+        android:id="@+id/itemLigar"
+        android:title="Ligar Paciente">
+    </item>
+
+    <item
+        android:id="@+id/itemSMS"
+        android:title="Enviar SMS Responsável">
+    </item>
+
+    <item
+        android:id="@+id/itemEmail"
+        android:title="Enviar Diagnostico (Email)">
+    </item>
+
+    <item
+        android:id="@+id/itemDadosADD"
+        android:title="Informar Dados Adicionais">
+    </item>
+
+</menu>
