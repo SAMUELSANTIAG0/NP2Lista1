@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".atividade.ListaPacientes" >
         </activity>
+        <activity android:name=".atividade.DadosADD" >
+        </activity>
+        <activity android:name=".atividade.AltDados" >
+        </activity>
     </application>
 
 </manifest>

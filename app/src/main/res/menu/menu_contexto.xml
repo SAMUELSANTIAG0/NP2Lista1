@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/itemLigar"
-        android:title="Ligar Paciente">
+        android:title="Ligar Parente">
     </item>
 
     <item

@@ -14,15 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        PacienteBean pacienteBean = new PacienteBean();
-//        pacienteBean.setId(1);
-//        pacienteBean.setNome("Paciente");
-//        pacienteBean.setCelular("999999999");
-//        pacienteBean.setEmail("paciente@gmail.com");
-//
-//        PacienteDao dao = new PacienteDao(MainActivity.this);
-//        dao.inserirRegistro(pacienteBean);
-//        dao.close();
     }
 
     public void cliqueLista(View view){

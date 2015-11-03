@@ -32,8 +32,11 @@ public class PacienteDao extends SQLiteOpenHelper{
         String sql = "CREATE TABLE " + TABELA
                 + "(id INTEGER PRIMARY KEY, "
                 + "nome TEXT, "
+                + "endereco TEXT, "
                 + "celular TEXT, "
-                + "email TEXT, ";
+                + "telefone TEXT, "
+                + "email TEXT, "
+                + "ParenteCelular TEXT, ";
         db.execSQL(sql);
     }
 
@@ -47,8 +50,11 @@ public class PacienteDao extends SQLiteOpenHelper{
         ContentValues valores = new ContentValues();
 
         valores.put("nome", paciente.getNome());
+        valores.put("endereco", paciente.getEndereco());
         valores.put("celular", paciente.getNome());
+        valores.put("telefone", paciente.getTelefone());
         valores.put("email", paciente.getNome());
+        valores.put("parenteCelular", paciente.getParenteCelular());
 
         getWritableDatabase().insert(TABELA, null, valores);
     }
@@ -60,20 +66,15 @@ public class PacienteDao extends SQLiteOpenHelper{
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 
 
-        // Os blocos try, catch e finally são utilizados para o tratamento de exceções
         try{
             while(cursor.moveToNext()){
-                // Criação da instancia de paciente utilizando informações
-                // provenientes da base de dados
                 PacienteBean paciente = new PacienteBean();
 
-                // Construindo o objeto a partir dos registros da base de dados
                 paciente.setId(cursor.getInt(0));
                 paciente.setNome(cursor.getString(1));
                 paciente.setCelular(cursor.getString(2));
                 paciente.setEmail(cursor.getString(3));
 
-                // Adicionando a instancia de paciente a lista de academias
                 pacienteAcademias.add(paciente);
             }
         }catch(SQLException sqle){
@@ -82,8 +83,7 @@ public class PacienteDao extends SQLiteOpenHelper{
             cursor.close();
         }
 
-        // Ao final deve ser retornada a lista com todo os academias
-        // existentes na base de dados
+
         return pacienteAcademias;
     }
 

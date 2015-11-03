@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">NP2 Lista1</string>
+    <string name="bem_vindo">Bem vindo ao aplicativo \nLista de Pacientes!</string>
+    <string name="sobre">Aqui você pode rapidamente Ligar, ou Mandar um SMS, para um Parente de seu paciente!</string>
+    <string name="sobre2">Também pode enviar um Diagnostico para seu Paciente por E-mail!</string>
+    <string name="sobre3">Aproveite também para incluir dados adicionais do Paciente!</string>
+    <string name="todos">Todos pacientes estão listrados abaixo:</string>
 </resources>

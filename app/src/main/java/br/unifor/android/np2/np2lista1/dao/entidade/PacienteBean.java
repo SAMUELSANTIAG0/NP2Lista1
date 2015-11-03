@@ -12,9 +12,45 @@ public class PacienteBean implements Parcelable{
     private String nome;
     private String celular;
     private String email;
+    private String parenteCelular;
+    private String telefone;
+    private String endereco;
 
     public PacienteBean() {
         // TODO
+    }
+
+    public String getParenteCelular() {
+        return parenteCelular;
+    }
+
+    public void setParenteCelular(String parenteCelular) {
+        this.parenteCelular = parenteCelular;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public static PacienteBean paciente1 = new PacienteBean();
+    public static PacienteBean paciente2 = new PacienteBean();
+    public static PacienteBean paciente3 = new PacienteBean();
+    public static PacienteBean paciente4 = new PacienteBean();
+    public static PacienteBean paciente5 = new PacienteBean();
+    public static PacienteBean paciente0 = new PacienteBean();
+
+
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     public PacienteBean(Parcel in) {
@@ -63,7 +99,7 @@ public class PacienteBean implements Parcelable{
     }
 
     public String getNome() {
-        return "Nome: " + this.nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
@@ -84,6 +120,15 @@ public class PacienteBean implements Parcelable{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+
+   public void addDados(String endereco, String celular, String telefone, String email, String parenteCelular){
+       this.endereco = endereco;
+       this.celular = celular;
+       this.telefone = telefone;
+       this.email = email;
+       this.parenteCelular = parenteCelular;
     }
 
     public static Parcelable.Creator getCREATOR() {
