@@ -5,4 +5,6 @@
     <string name="sobre2">Também pode enviar um Diagnostico para seu Paciente por E-mail!</string>
     <string name="sobre3">Aproveite também para incluir dados adicionais do Paciente!</string>
     <string name="todos">Todos pacientes estão listrados abaixo:</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

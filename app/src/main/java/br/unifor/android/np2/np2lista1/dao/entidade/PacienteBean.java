@@ -10,11 +10,13 @@ public class PacienteBean implements Parcelable{
 
     private int id;
     private String nome;
+    private String endereco;
     private String celular;
+    private String telefone;
     private String email;
     private String parenteCelular;
-    private String telefone;
-    private String endereco;
+
+
 
     public PacienteBean() {
         // TODO
@@ -40,12 +42,11 @@ public class PacienteBean implements Parcelable{
         return endereco;
     }
 
-    public static PacienteBean paciente1 = new PacienteBean();
-    public static PacienteBean paciente2 = new PacienteBean();
-    public static PacienteBean paciente3 = new PacienteBean();
-    public static PacienteBean paciente4 = new PacienteBean();
-    public static PacienteBean paciente5 = new PacienteBean();
-    public static PacienteBean paciente0 = new PacienteBean();
+//    public static PacienteBean paciente1 = new PacienteBean();
+//    public static PacienteBean paciente2 = new PacienteBean();
+//    public static PacienteBean paciente3 = new PacienteBean();
+//    public static PacienteBean paciente4 = new PacienteBean();
+//    public static PacienteBean paciente5 = new PacienteBean();
 
 
 
@@ -60,8 +61,11 @@ public class PacienteBean implements Parcelable{
     private void readFromParcelable(Parcel in) {
         id = in.readInt();
         nome = in.readString();
+        endereco = in.readString();
         celular = in.readString();
+        telefone = in.readString();
         email = in.readString();
+        parenteCelular = in.readString();
     }
 
 
@@ -86,8 +90,11 @@ public class PacienteBean implements Parcelable{
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(nome);
+        dest.writeString(endereco);
         dest.writeString(celular);
+        dest.writeString(telefone);
         dest.writeString(email);
+        dest.writeString(parenteCelular);
     }
 
     public int getId() {

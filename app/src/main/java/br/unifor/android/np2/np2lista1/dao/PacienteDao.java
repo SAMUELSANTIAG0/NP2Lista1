@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
 import java.util.ArrayList;
+
 import br.unifor.android.np2.np2lista1.dao.entidade.PacienteBean;
 
 /**
@@ -36,13 +38,16 @@ public class PacienteDao extends SQLiteOpenHelper{
                 + "celular TEXT, "
                 + "telefone TEXT, "
                 + "email TEXT, "
-                + "ParenteCelular TEXT, ";
+                + "parenteCelular TEXT) ";
         db.execSQL(sql);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        String sql = "DROP TABLE IF EXISTS "+ TABELA;
+        db.execSQL(sql);
+        onCreate(db);
     }
 
 
@@ -59,10 +64,34 @@ public class PacienteDao extends SQLiteOpenHelper{
         getWritableDatabase().insert(TABELA, null, valores);
     }
 
+
+    public void removerRegistro(PacienteBean paciente){
+        String [] args = {Integer.toString(paciente.getId())};
+
+        getWritableDatabase().delete(TABELA, "id=?", args);
+    }
+
+    public void editarRegistro(PacienteBean paciente){
+        ContentValues valores = new ContentValues();
+
+        valores.put("nome", paciente.getNome());
+        valores.put("endereco", paciente.getEndereco());
+        valores.put("celular", paciente.getCelular());
+        valores.put("telefone", paciente.getTelefone());
+        valores.put("email", paciente.getEmail());
+        valores.put("parenteCelular",paciente.getParenteCelular());
+
+        String[] args = new String[]{Integer.toString(paciente.getId())};
+
+        getWritableDatabase().update(TABELA, valores, "id=?", args);
+
+    }
+
+
     public ArrayList<PacienteBean> consultarRegistros(){
 
-        ArrayList<PacienteBean> pacienteAcademias = new ArrayList<PacienteBean>();
-        String sql = "Select * from academia order by nome" ;
+        ArrayList<PacienteBean> pacienteList = new ArrayList<PacienteBean>();
+        String sql = "Select * from paciente order by nome" ;
         Cursor cursor = getReadableDatabase().rawQuery(sql, null);
 
 
@@ -72,10 +101,13 @@ public class PacienteDao extends SQLiteOpenHelper{
 
                 paciente.setId(cursor.getInt(0));
                 paciente.setNome(cursor.getString(1));
-                paciente.setCelular(cursor.getString(2));
-                paciente.setEmail(cursor.getString(3));
+                paciente.setEndereco(cursor.getString(2));
+                paciente.setCelular(cursor.getString(3));
+                paciente.setTelefone(cursor.getString(4));
+                paciente.setEmail(cursor.getString(5));
+                paciente.setParenteCelular(cursor.getString(6));
 
-                pacienteAcademias.add(paciente);
+                pacienteList.add(paciente);
             }
         }catch(SQLException sqle){
 
@@ -83,8 +115,7 @@ public class PacienteDao extends SQLiteOpenHelper{
             cursor.close();
         }
 
-
-        return pacienteAcademias;
+        return pacienteList;
     }
 
 }
