@@ -31,9 +31,6 @@ public class ListaPacientes extends AppCompatActivity {
     private ArrayAdapter<PacienteBean> adaptadorLista;
     private int adptadorLayout = android.R.layout.simple_list_item_1;
 
-//    private int selecionado;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,24 +39,16 @@ public class ListaPacientes extends AppCompatActivity {
 
         listViewPacientes = (ListView) findViewById(R.id.listView);
 
-//        ArrayList<String> pacientes = preencherDados();
         PacienteDao dao = new PacienteDao(ListaPacientes.this);
         registrosPaciente = dao.consultarRegistros();
 
-        if(registrosPaciente.isEmpty()){
+        if (registrosPaciente.isEmpty()) {
 
-            PacienteBean paciente1 = new PacienteBean();
-            PacienteBean paciente2 = new PacienteBean();
-            PacienteBean paciente3 = new PacienteBean();
-            PacienteBean paciente4 = new PacienteBean();
-            PacienteBean paciente5 = new PacienteBean();
-
-            paciente1.setNome("Joao de Lima");
-            paciente1.addDados("Avenida Brasil, Fortaleza CE", "999999999", "33333333", "joao@gmail.com", "988888888");
-            paciente2.setNome("Maria Costa");
-            paciente3.setNome("Jose Pinheiro");
-            paciente4.setNome("Jessica Santos");
-            paciente5.setNome("Priscila Silva");
+            PacienteBean paciente1 = new PacienteBean("Andre de Lima", "Avenida Brasil, Fortaleza CE", "999999999", "33333333", "andre@gmail.com", "988888888");
+            PacienteBean paciente2 = new PacienteBean("Maria Costa");
+            PacienteBean paciente3 = new PacienteBean("Jose Pinheiro");
+            PacienteBean paciente4 = new PacienteBean("Jessica Santos");
+            PacienteBean paciente5 = new PacienteBean("Priscila Silva");
 
             dao.inserirRegistro(paciente1);
             dao.inserirRegistro(paciente2);
@@ -71,6 +60,7 @@ public class ListaPacientes extends AppCompatActivity {
         }
 
         adaptadorLista = new ArrayAdapter<PacienteBean>(this, adptadorLayout, registrosPaciente);
+
         listViewPacientes.setAdapter(adaptadorLista);
         registerForContextMenu(listViewPacientes);
 
@@ -79,7 +69,7 @@ public class ListaPacientes extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // TODO Auto-generated method stub
-                Toast.makeText(ListaPacientes.this, "(Clique Curto) Paciente: " + registrosPaciente.get(position),
+                Toast.makeText(ListaPacientes.this, "Paciente: " + registrosPaciente.get(position).getNome(),
                         Toast.LENGTH_LONG).show();
             }
         });
@@ -87,7 +77,6 @@ public class ListaPacientes extends AppCompatActivity {
         listViewPacientes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                selecionado = position;
                 pacienteSelecionado = (PacienteBean) adaptadorLista.getItem(position);
                 return false;
             }
@@ -105,9 +94,6 @@ public class ListaPacientes extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
@@ -116,20 +102,21 @@ public class ListaPacientes extends AppCompatActivity {
     }
 
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo){
-        super.onCreateContextMenu(menu, view, menuInfo);
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
         getMenuInflater().inflate(R.menu.menu_contexto, menu);
-//        ListView lv = (ListView) v;
-//        AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
-//        final PacienteBean curso = (PacienteBean) lv.getItemAtPosition(acmi.position);
-//        String nome = curso.getNome();
-//        menu.setHeaderTitle(nome);
+
+        ListView lv = (ListView) v;
+        AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        final PacienteBean paciente = (PacienteBean) lv.getItemAtPosition(acmi.position);
+        String nome = paciente.getNome();
+        menu.setHeaderTitle(nome);
 
     }
 
 
     @Override
-    public boolean onContextItemSelected(MenuItem item){
+    public boolean onContextItemSelected(MenuItem item) {
         Intent intent = null;
         switch (item.getItemId()) {
             case R.id.itemRemover:
@@ -163,11 +150,11 @@ public class ListaPacientes extends AppCompatActivity {
     }
 
 
-    public void removerPaciente(){
+    public void removerPaciente() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Deseja remover o paciente : "+ pacienteSelecionado.getNome()
+        builder.setMessage("Deseja remover o paciente : " + pacienteSelecionado.getNome()
                 + " ?");
-
+        builder.setIcon(R.drawable.ic_menu_delete);
         builder.setPositiveButton("sim", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // TODO Auto-generated method stub
@@ -188,10 +175,10 @@ public class ListaPacientes extends AppCompatActivity {
         dialog.show();
     }
 
-    public void enviarEmail(Intent intent){
-        if (pacienteSelecionado.getEmail() == null){
+    public void enviarEmail(Intent intent) {
+        if (pacienteSelecionado.getEmail() == null) {
             msgErro();
-        }else {
+        } else {
             intent = new Intent(Intent.ACTION_SEND);
             intent.setType("message/rfc822");
             intent.putExtra(Intent.EXTRA_EMAIL, new String[]{pacienteSelecionado.getEmail()});
@@ -201,10 +188,10 @@ public class ListaPacientes extends AppCompatActivity {
         }
     }
 
-    public void enviarSMS(Intent intent){
-        if (pacienteSelecionado.getParenteCelular() == null){
+    public void enviarSMS(Intent intent) {
+        if (pacienteSelecionado.getParenteCelular() == null) {
             msgErro();
-        }else {
+        } else {
             intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("sms: " + pacienteSelecionado.getParenteCelular()));
             intent.putExtra("sms_body", "Olá, o paciente " + pacienteSelecionado.getNome() + ", precisa de sua presança no Hospital.");
@@ -212,53 +199,15 @@ public class ListaPacientes extends AppCompatActivity {
         }
     }
 
-    public void ligarParente(Intent intent){
-        if (pacienteSelecionado.getParenteCelular() == null){
+    public void ligarParente(Intent intent) {
+        if (pacienteSelecionado.getParenteCelular() == null) {
             msgErro();
-        }else {
+        } else {
             intent = new Intent(Intent.ACTION_CALL);
             intent.setData(Uri.parse("tel: " + pacienteSelecionado.getParenteCelular()));
             startActivity(intent);
         }
     }
-
-//    private ArrayList<String> preencherDados() {
-//
-//        ArrayList<String> dados = new ArrayList<>();
-//        dados.add(PacienteBean.paciente1.getNome());
-//
-//        dados.add(PacienteBean.paciente2.getNome());
-//
-//        dados.add(PacienteBean.paciente3.getNome());
-//
-//        dados.add(PacienteBean.paciente4.getNome());
-//
-//        dados.add(PacienteBean.paciente5.getNome());
-//
-//        return dados;
-//    }
-
-//    public PacienteBean pacienteSelecionado(int selecionado){
-//
-//        switch (selecionado){
-//            case 0:
-//                PacienteBean.paciente0 = PacienteBean.paciente1;
-//                break;
-//            case 1:
-//                PacienteBean.paciente0 = PacienteBean.paciente2;
-//                break;
-//            case 2:
-//                PacienteBean.paciente0 = PacienteBean.paciente3;
-//            break;
-//            case 3:
-//                PacienteBean.paciente0 = PacienteBean.paciente4;
-//            break;
-//            case 4:
-//                PacienteBean.paciente0 = PacienteBean.paciente5;
-//            break;
-//        }
-//            return PacienteBean.paciente0;
-//    }
 
     private void informarDados(Intent intent) {
         intent = new Intent(ListaPacientes.this, DadosADD.class);
@@ -272,11 +221,11 @@ public class ListaPacientes extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void msgErro(){
+    public void msgErro() {
         Context contexto = getApplicationContext();
         String texto = "Ainda não cadastrado";
         int duracao = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(contexto, texto,duracao);
+        Toast toast = Toast.makeText(contexto, texto, duracao);
         toast.show();
     }
 }

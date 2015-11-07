@@ -56,9 +56,9 @@ public class PacienteDao extends SQLiteOpenHelper{
 
         valores.put("nome", paciente.getNome());
         valores.put("endereco", paciente.getEndereco());
-        valores.put("celular", paciente.getNome());
+        valores.put("celular", paciente.getCelular());
         valores.put("telefone", paciente.getTelefone());
-        valores.put("email", paciente.getNome());
+        valores.put("email", paciente.getEmail());
         valores.put("parenteCelular", paciente.getParenteCelular());
 
         getWritableDatabase().insert(TABELA, null, valores);

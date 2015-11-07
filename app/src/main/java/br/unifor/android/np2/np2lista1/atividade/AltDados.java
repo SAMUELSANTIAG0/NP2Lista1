@@ -12,7 +12,6 @@ import br.unifor.android.np2.np2lista1.dao.entidade.PacienteBean;
 
 public class AltDados extends AppCompatActivity {
 
-//    private int selecionado;
     private PacienteBean pacienteSelecionado;
 
     @Override
@@ -20,7 +19,6 @@ public class AltDados extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alt_dados);
         pacienteSelecionado = getIntent().getExtras().getParcelable("pacienteSelecionado");
-//        setSelecionado(selecionado);
 
         EditText txtNome = (EditText) findViewById(R.id.editTextNome);
         EditText txtEndereco = (EditText) findViewById(R.id.editTextEndereco);
@@ -36,47 +34,6 @@ public class AltDados extends AppCompatActivity {
         txtParenteCelular.setText(pacienteSelecionado.getParenteCelular());
 
     }
-
-//    private void setSelecionado(int selecionado) {
-//        switch (selecionado){
-//            case 0:
-//                PacienteBean.paciente0 = PacienteBean.paciente1;
-//                break;
-//            case 1:
-//                PacienteBean.paciente0 = PacienteBean.paciente2;
-//                break;
-//            case 2:
-//                PacienteBean.paciente0 = PacienteBean.paciente3;
-//                break;
-//            case 3:
-//                PacienteBean.paciente0 = PacienteBean.paciente4;
-//                break;
-//            case 4:
-//                PacienteBean.paciente0 = PacienteBean.paciente5;
-//                break;
-//        }
-//    }
-//
-//    public void getSelecionado() {
-//
-//        switch (selecionado){
-//            case 0:
-//                PacienteBean.paciente1 = PacienteBean.paciente0;
-//                break;
-//            case 1:
-//                PacienteBean.paciente2 = PacienteBean.paciente0;
-//                break;
-//            case 2:
-//                PacienteBean.paciente3 = PacienteBean.paciente0;
-//                break;
-//            case 3:
-//                PacienteBean.paciente4 = PacienteBean.paciente0;
-//                break;
-//            case 4:
-//                PacienteBean.paciente5 = PacienteBean.paciente0;
-//                break;
-//        }
-//    }
 
     public void CliqueConfirmarDados(View view){
         EditText txtNome = (EditText) findViewById(R.id.editTextNome);

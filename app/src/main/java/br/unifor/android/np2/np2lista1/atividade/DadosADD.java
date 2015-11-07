@@ -20,56 +20,12 @@ public class DadosADD extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados_add);
-//        Intent intent = getIntent();
-//        Bundle args = intent.getExtras();
-//        selecionado = args.getInt("selecionado");
-//        setSelecionado(selecionado);
         pacienteSelecionado = getIntent().getExtras().getParcelable("pacienteSelecionado");
         TextView txtNome = (TextView) findViewById(R.id.editTextNome);
         txtNome.setText(pacienteSelecionado.getNome());
 
     }
 
-//    public void setSelecionado(int selecionado) {
-//        switch (selecionado){
-//            case 0:
-//                PacienteBean.paciente0 = PacienteBean.paciente1;
-//                break;
-//            case 1:
-//                PacienteBean.paciente0 = PacienteBean.paciente2;
-//                break;
-//            case 2:
-//                PacienteBean.paciente0 = PacienteBean.paciente3;
-//                break;
-//            case 3:
-//                PacienteBean.paciente0 = PacienteBean.paciente4;
-//                break;
-//            case 4:
-//                PacienteBean.paciente0 = PacienteBean.paciente5;
-//                break;
-//        }
-//    }
-
-//    public void getSelecionado() {
-//
-//        switch (selecionado){
-//            case 0:
-//                PacienteBean.paciente1 = PacienteBean.paciente0;
-//                break;
-//            case 1:
-//                PacienteBean.paciente2 = PacienteBean.paciente0;
-//                break;
-//            case 2:
-//                PacienteBean.paciente3 = PacienteBean.paciente0;
-//                break;
-//            case 3:
-//                PacienteBean.paciente4 = PacienteBean.paciente0;
-//                break;
-//            case 4:
-//                PacienteBean.paciente5 = PacienteBean.paciente0;
-//                break;
-//        }
-//    }
 
     public void CliqueConfirmarDados(View view){
         EditText txtEndereco = (EditText) findViewById(R.id.editTextEndereco);

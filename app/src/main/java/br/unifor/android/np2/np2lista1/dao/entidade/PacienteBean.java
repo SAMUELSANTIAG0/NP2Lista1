@@ -22,6 +22,19 @@ public class PacienteBean implements Parcelable{
         // TODO
     }
 
+    public PacienteBean(String nome,String endereco, String celular, String telefone, String email, String parenteCelular){
+        this.nome = nome;
+        this.endereco = endereco;
+        this.celular = celular;
+        this.telefone = telefone;
+        this.email = email;
+        this.parenteCelular = parenteCelular;
+    }
+
+    public PacienteBean(String nome){
+        this.nome = nome;
+    }
+
     public String getParenteCelular() {
         return parenteCelular;
     }
@@ -41,13 +54,6 @@ public class PacienteBean implements Parcelable{
     public String getEndereco() {
         return endereco;
     }
-
-//    public static PacienteBean paciente1 = new PacienteBean();
-//    public static PacienteBean paciente2 = new PacienteBean();
-//    public static PacienteBean paciente3 = new PacienteBean();
-//    public static PacienteBean paciente4 = new PacienteBean();
-//    public static PacienteBean paciente5 = new PacienteBean();
-
 
 
     public void setEndereco(String endereco) {
@@ -79,6 +85,10 @@ public class PacienteBean implements Parcelable{
             return new PacienteBean[size];
         }
     };
+
+    public String toString(){
+        return "Paciente - "+nome;
+    }
 
     @Override
     public int describeContents() {
@@ -127,15 +137,6 @@ public class PacienteBean implements Parcelable{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-
-   public void addDados(String endereco, String celular, String telefone, String email, String parenteCelular){
-       this.endereco = endereco;
-       this.celular = celular;
-       this.telefone = telefone;
-       this.email = email;
-       this.parenteCelular = parenteCelular;
     }
 
     public static Parcelable.Creator getCREATOR() {

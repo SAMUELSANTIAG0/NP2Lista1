@@ -3,32 +3,48 @@
 
     <item
         android:id="@+id/itemRemover"
-        android:title="Remover Paciente">
+        android:icon="@android:drawable/ic_menu_delete"
+        android:title="Remover Paciente"
+        android:showAsAction="ifRoom|withText">
     </item>
 
     <item
         android:id="@+id/itemAlterar"
-        android:title="Alterar Paciente">
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="Alterar Paciente"
+        android:showAsAction="ifRoom|withText">
     </item>
 
     <item
         android:id="@+id/itemLigar"
-        android:title="Ligar Parente">
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="Ligar Parente"
+        android:showAsAction="ifRoom|withText">
+
     </item>
 
     <item
         android:id="@+id/itemSMS"
-        android:title="Enviar SMS Responsável">
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="Enviar SMS Responsável"
+        android:showAsAction="ifRoom|withText">
+
     </item>
 
     <item
         android:id="@+id/itemEmail"
-        android:title="Enviar Diagnostico (Email)">
+        android:icon="@android:drawable/ic_dialog_email"
+        android:title="Enviar Diagnostico (Email)"
+        android:showAsAction="ifRoom|withText">
+
     </item>
 
     <item
         android:id="@+id/itemDadosADD"
-        android:title="Informar Dados Adicionais">
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Informar Dados Adicionais"
+        android:showAsAction="ifRoom|withText">
+
     </item>
 
 </menu>
